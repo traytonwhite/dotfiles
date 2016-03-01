@@ -1,0 +1,54 @@
+#!/usr/local/opt/coreutils/libexec/gnubin/env bash
+
+case "$-" in
+	*i*) cowsay "$(fortune)" ;;
+esac
+
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=100000
+HISTFILESIZE=4000000
+export PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
+export EDITOR='vim'
+export VISUAL='vim'
+set -o vi
+
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_functions ]; then
+	. ~/.bash_functions
+fi
+
+export PATH="$(brew --prefix coreutils)/libexec/gnubin:/Users/traytonwhite11415/Library/Python/2.7/lib:/Users/traytonwhite11415/Library/Python/2.7/bin:/usr/local/opt:${PATH}"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+export HISTTIMEFORMAT="%h %d %H:%M:%S > "
+
+# Add GHC 7.10.1 to the PATH, via https://ghcformacosx.github.io/
+# export GHC_DOT_APP="/Applications/ghc-7.10.2.app"
+# if [ -d "$GHC_DOT_APP" ]; then
+#   export PATH="${HOME}/.cabal/bin:${GHC_DOT_APP}/Contents/bin:${PATH}"
+# fi
+
+export PATH="${HOME}/.local/bin:${HOME}/.stack/programs/x86_64-osx/ghc-7.10.2/bin:${PATH}"
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+export KETTLE_HOME=/Users/traytonwhite11415/teespringrepos/analytics_dw/data_warehouse/etl/redshift_pentaho
+
+. ~/git-completion.bash
+
+powerline-daemon -q
+export POWERLINE_BASH_CONTINUATION=1
+export POWERLINE_BASH_SELECT=1
+. /Users/traytonwhite11415/Library/Python/2.7/lib/python/site-packages/powerline/bindings/bash/powerline.sh
+
+function frameworkpython {
+    if [[ ! -z "$VIRTUAL_ENV" ]]; then
+        PYTHONHOME=$VIRTUAL_ENV /usr/local/bin/python "$@"
+    else
+        /usr/local/bin/python "$@"
+    fi
+}
+
+eval "$(stack --bash-completion-script stack)"
