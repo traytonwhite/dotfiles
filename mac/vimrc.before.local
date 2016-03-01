@@ -1,0 +1,27 @@
+"let g:spf13_leader=','
+let g:spf13_localleader='-'
+let g:spf13_leader="\<Space>"
+
+set nospell
+set relativenumber
+let g:airline_powerline_fonts=1
+
+let g:syntastic_perl_checkers = ['perl', 'perlcritic', 'podchecker']
+let g:syntastic_enable_perl_checker=1
+
+let g:syntastic_javascript_checkers = ['eslint', 'jshint']
+let g:syntastic_python_checkers = ['pylint', 'flake8', 'pyflakes', 'pep8', 'python']
+
+let g:syntastic_sh_checkers = ['shellcheck', 'sh']
+
+let g:spf13_bundle_groups=['general', 'writing', 'neocomplete', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', 'haskell',]
+
+let g:haddock_browser='/Applications/Google Chrome.app/'
+
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+
+let g:haskell_conceal_enumerations = 0
+let g:ghc="/Applications/ghc-7.10.1.app/Contents/bin/ghc"
+
+let g:spf13_no_autochdir = 1
