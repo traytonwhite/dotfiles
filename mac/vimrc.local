@@ -1,0 +1,21 @@
+inoremap jk <Esc>
+
+highlight clear LineNr
+highlight clear SignColumn
+
+set lazyredraw
+
+set colorcolumn=79
+set cursorcolumn
+
+set nospell
+
+call togglebg#map("<F5>")
+
+autocmd FileType sh setlocal noexpandtab
+
+"colorscheme zenburn
+"let g:airline_theme = 'zenburn'
+
+let g:minimap_highlight='Visual'
+autocmd VimEnter * Minimap
